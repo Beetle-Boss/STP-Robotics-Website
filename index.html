@@ -234,6 +234,14 @@
         }
 
         /* Announcements & Replies */
+        .no-announcements {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+            text-align: center;
+            padding: 32px 0;
+            font-style: italic;
+        }
+
         .announcement-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -291,6 +299,11 @@
             background-color: var(--bg-subtle);
         }
 
+        .btn-action.liked {
+            color: var(--brand-gold);
+            background-color: var(--brand-gold-light);
+        }
+
         /* Replies Container */
         .replies-container {
             margin-top: 16px;
@@ -311,14 +324,38 @@
         .reply-header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             font-size: 0.75rem;
             color: var(--text-muted);
             margin-bottom: 4px;
         }
 
+        .reply-author-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .reply-author {
             font-weight: 600;
             color: var(--text-primary);
+        }
+
+        .btn-delete {
+            background: none;
+            border: none;
+            color: #ef4444;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-weight: 500;
+            padding: 0 4px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .btn-delete:hover {
+            text-decoration: underline;
+            background-color: #fef2f2;
         }
 
         .reply-body {
@@ -586,37 +623,7 @@
             </div>
             
             <div id="announcements-list">
-                <!-- Announcement Card 1 -->
-                <div class="announcement-card" id="announcement-1">
-                    <div class="announcement-header">
-                        <span class="announcement-title">Chassis Fabrication Phase Complete</span>
-                    </div>
-                    <div class="announcement-meta">Posted by Jayden Kuntzman • Build Lead</div>
-                    <div class="announcement-body">
-                        The drive train chassis has cleared tolerance testing. Pneumatic pistons and gear reduction boxes are ready for mounting during Friday's session.
-                    </div>
-                    <div class="announcement-actions">
-                        <button class="btn-action" onclick="toggleAcknowledge(this)">Acknowledge (4)</button>
-                        <button class="btn-action" onclick="toggleReplySection('replies-1')">Replies (1)</button>
-                    </div>
-
-                    <!-- Replies Thread -->
-                    <div class="replies-container" id="replies-1" style="display: none;">
-                        <div class="reply-list" id="reply-list-1">
-                            <div class="reply-item">
-                                <div class="reply-header">
-                                    <span class="reply-author">Noah Taylor • Programming Lead</span>
-                                    <span>10 mins ago</span>
-                                </div>
-                                <div class="reply-body">Wiring harnesses are mapped and ready to route as soon as mechanical mounting finishes.</div>
-                            </div>
-                        </div>
-                        <div class="reply-form">
-                            <input type="text" class="reply-input" id="reply-input-1" placeholder="Write a reply...">
-                            <button class="btn-primary" onclick="postReply(1)">Reply</button>
-                        </div>
-                    </div>
-                </div>
+                <p id="no-announcements" class="no-announcements">No Announcements at this time.</p>
             </div>
         </div>
 
@@ -716,7 +723,7 @@
     </footer>
 
     <script>
-        let announcementCounter = 1;
+        let announcementCounter = 0;
 
         function switchTab(tabName) {
             ['models', 'spreadsheet', 'about'].forEach(t => {
@@ -735,10 +742,38 @@
         function openModal() { document.getElementById('modal').style.display = 'flex'; }
         function closeModal() { document.getElementById('modal').style.display = 'none'; }
 
-        function toggleAcknowledge(btn) {
-            let count = parseInt(btn.innerText.match(/\d+/)[0]) + 1;
-            btn.innerText = `Acknowledge (${count})`;
-            btn.style.color = 'var(--brand-gold)';
+        function checkEmptyState() {
+            const list = document.getElementById('announcements-list');
+            const cards = list.querySelectorAll('.announcement-card');
+            const noAnnounceMsg = document.getElementById('no-announcements');
+
+            if (cards.length === 0) {
+                if (!noAnnounceMsg) {
+                    const msg = document.createElement('p');
+                    msg.id = 'no-announcements';
+                    msg.className = 'no-announcements';
+                    msg.innerText = 'No Announcements at this time.';
+                    list.appendChild(msg);
+                }
+            } else if (noAnnounceMsg) {
+                noAnnounceMsg.remove();
+            }
+        }
+
+        function toggleLike(btn) {
+            let count = parseInt(btn.getAttribute('data-likes') || '0');
+            const isLiked = btn.classList.contains('liked');
+
+            if (isLiked) {
+                count--;
+                btn.classList.remove('liked');
+            } else {
+                count++;
+                btn.classList.add('liked');
+            }
+
+            btn.setAttribute('data-likes', count);
+            btn.innerHTML = `👍 Like (${count})`;
         }
 
         function toggleReplySection(containerId) {
@@ -758,7 +793,10 @@
             replyItem.className = 'reply-item';
             replyItem.innerHTML = `
                 <div class="reply-header">
-                    <span class="reply-author">Team Member</span>
+                    <div class="reply-author-group">
+                        <span class="reply-author">Team Member</span>
+                        <button class="btn-delete" onclick="deleteReply(this, ${announcementId})">Delete</button>
+                    </div>
                     <span>Just now</span>
                 </div>
                 <div class="reply-body">${input.value.trim()}</div>
@@ -766,6 +804,21 @@
 
             replyList.appendChild(replyItem);
             input.value = '';
+
+            updateReplyCount(announcementId);
+        }
+
+        function deleteReply(btn, announcementId) {
+            const replyItem = btn.closest('.reply-item');
+            replyItem.remove();
+            updateReplyCount(announcementId);
+        }
+
+        function updateReplyCount(announcementId) {
+            const replyList = document.getElementById(`reply-list-${announcementId}`);
+            const replyBtn = document.getElementById(`btn-reply-toggle-${announcementId}`);
+            const currentCount = replyList.querySelectorAll('.reply-item').length;
+            replyBtn.innerText = `Replies (${currentCount})`;
         }
 
         function submitAnnouncement() {
@@ -788,8 +841,8 @@
                 <div class="announcement-meta">Posted by ${author || 'Team Member'} • Just now</div>
                 <div class="announcement-body">${body}</div>
                 <div class="announcement-actions">
-                    <button class="btn-action" onclick="toggleAcknowledge(this)">Acknowledge (0)</button>
-                    <button class="btn-action" onclick="toggleReplySection('replies-${currentId}')">Replies (0)</button>
+                    <button class="btn-action" data-likes="0" onclick="toggleLike(this)">👍 Like (0)</button>
+                    <button class="btn-action" id="btn-reply-toggle-${currentId}" onclick="toggleReplySection('replies-${currentId}')">Replies (0)</button>
                 </div>
                 <div class="replies-container" id="replies-${currentId}" style="display: none;">
                     <div class="reply-list" id="reply-list-${currentId}"></div>
@@ -801,11 +854,16 @@
             `;
 
             document.getElementById('announcements-list').prepend(card);
+            checkEmptyState();
+
             document.getElementById('ann-title').value = '';
             document.getElementById('ann-author').value = '';
             document.getElementById('ann-body').value = '';
             closeModal();
         }
+
+        // Initialize empty state check on page load
+        checkEmptyState();
     </script>
 </body>
 </html>
