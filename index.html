@@ -253,7 +253,7 @@
         .announcement-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 8px;
         }
 
@@ -304,6 +304,23 @@
             background-color: var(--brand-gold-light);
         }
 
+        .btn-delete {
+            background: none;
+            border: none;
+            color: #ef4444;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .btn-delete:hover {
+            background-color: #fef2f2;
+            text-decoration: underline;
+        }
+
         /* Replies Container */
         .replies-container {
             margin-top: 16px;
@@ -339,23 +356,6 @@
         .reply-author {
             font-weight: 600;
             color: var(--text-primary);
-        }
-
-        .btn-delete {
-            background: none;
-            border: none;
-            color: #ef4444;
-            font-size: 0.75rem;
-            cursor: pointer;
-            font-weight: 500;
-            padding: 0 4px;
-            border-radius: var(--radius-sm);
-            transition: var(--transition);
-        }
-
-        .btn-delete:hover {
-            text-decoration: underline;
-            background-color: #fef2f2;
         }
 
         .reply-body {
@@ -773,7 +773,15 @@
             }
 
             btn.setAttribute('data-likes', count);
-            btn.innerHTML = `👍 Like (${count})`;
+            btn.innerHTML = `👍 Likes (${count})`;
+        }
+
+        function deleteAnnouncement(announcementId) {
+            const card = document.getElementById(`announcement-${announcementId}`);
+            if (card) {
+                card.remove();
+                checkEmptyState();
+            }
         }
 
         function toggleReplySection(containerId) {
@@ -837,11 +845,12 @@
             card.innerHTML = `
                 <div class="announcement-header">
                     <span class="announcement-title">${title}</span>
+                    <button class="btn-delete" onclick="deleteAnnouncement(${currentId})">Delete Announcement</button>
                 </div>
                 <div class="announcement-meta">Posted by ${author || 'Team Member'} • Just now</div>
                 <div class="announcement-body">${body}</div>
                 <div class="announcement-actions">
-                    <button class="btn-action" data-likes="0" onclick="toggleLike(this)">👍 Like (0)</button>
+                    <button class="btn-action" data-likes="0" onclick="toggleLike(this)">👍 Likes (0)</button>
                     <button class="btn-action" id="btn-reply-toggle-${currentId}" onclick="toggleReplySection('replies-${currentId}')">Replies (0)</button>
                 </div>
                 <div class="replies-container" id="replies-${currentId}" style="display: none;">
