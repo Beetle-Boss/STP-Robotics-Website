@@ -18,7 +18,6 @@
             --brand-gold: #d97706;
             --brand-gold-hover: #b45309;
             --brand-gold-light: #fef3c7;
-            --accent-blue: #2563eb;
             --radius-lg: 10px;
             --radius-md: 6px;
             --radius-sm: 4px;
@@ -212,7 +211,7 @@
         .section-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center;
             margin-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 12px;
@@ -223,11 +222,6 @@
             color: var(--text-primary);
             font-weight: 700;
             letter-spacing: -0.02em;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 0.875rem;
         }
 
         .card {
@@ -300,10 +294,9 @@
         /* Replies Container */
         .replies-container {
             margin-top: 16px;
-            padding-top: 16px;
+            padding: 16px;
             border-top: 1px dashed var(--border-color);
             background-color: var(--bg-subtle);
-            padding: 16px;
             border-radius: var(--radius-md);
         }
 
@@ -398,45 +391,10 @@
             display: block;
         }
 
-        /* Data Tables & Spreadsheets */
-        .roster-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            margin-bottom: 24px;
-        }
-
-        .roster-table th {
-            background-color: var(--bg-subtle);
-            color: var(--text-primary);
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 10px 14px;
-            border-bottom: 1px solid var(--border-color);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .roster-table td {
-            padding: 12px 14px;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.875rem;
-            color: var(--text-primary);
-        }
-
-        .badge-status {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 2px 8px;
-            border-radius: 12px;
-            background-color: #dcfce7;
-            color: #166534;
-        }
-
+        /* Spreadsheet Embed */
         .spreadsheet-container {
             width: 100%;
-            height: 500px;
+            height: 600px;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             overflow: hidden;
@@ -453,7 +411,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         /* Cards Grid */
@@ -603,7 +561,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#tab-section" onclick="switchTab('models')">CAD Models</a></li>
-                <li><a href="#tab-section" onclick="switchTab('roster')">Roster & Ledger</a></li>
+                <li><a href="#tab-section" onclick="switchTab('spreadsheet')">Spreadsheet</a></li>
                 <li><a href="#tab-section" onclick="switchTab('about')">About</a></li>
                 <li><a href="#calendar" class="btn-primary">Calendar</a></li>
             </ul>
@@ -623,15 +581,12 @@
         <!-- Team Announcements Section -->
         <div class="card">
             <div class="section-header">
-                <div>
-                    <h2>Team Announcements</h2>
-                    <p>Build updates, schedules, and engineering notes</p>
-                </div>
+                <h2>Announcements</h2>
                 <button class="btn-outline" onclick="openModal()">New Announcement</button>
             </div>
             
             <div id="announcements-list">
-                <!-- Sample Announcement Card 1 -->
+                <!-- Announcement Card 1 -->
                 <div class="announcement-card" id="announcement-1">
                     <div class="announcement-header">
                         <span class="announcement-title">Chassis Fabrication Phase Complete</span>
@@ -650,7 +605,7 @@
                         <div class="reply-list" id="reply-list-1">
                             <div class="reply-item">
                                 <div class="reply-header">
-                                    <span class="reply-author">Noah Taylor</span>
+                                    <span class="reply-author">Noah Taylor • Programming Lead</span>
                                     <span>10 mins ago</span>
                                 </div>
                                 <div class="reply-body">Wiring harnesses are mapped and ready to route as soon as mechanical mounting finishes.</div>
@@ -669,15 +624,14 @@
         <div class="tabs-wrapper" id="tab-section">
             <div class="tab-buttons">
                 <button class="tab-btn active" id="btn-tab-models" onclick="switchTab('models')">CAD Models</button>
-                <button class="tab-btn" id="btn-tab-roster" onclick="switchTab('roster')">Team Roster & Spreadsheet</button>
+                <button class="tab-btn" id="btn-tab-spreadsheet" onclick="switchTab('spreadsheet')">Spreadsheet</button>
                 <button class="tab-btn" id="btn-tab-about" onclick="switchTab('about')">About Us</button>
             </div>
 
-            <!-- Tab 1: Models -->
+            <!-- Tab 1: CAD Models -->
             <div id="tab-models" class="tab-content active">
                 <div class="section-header">
-                    <h2>CAD Schematics & Schematics</h2>
-                    <p>Downloadable STEP and OnShape models for Team 24171 assemblies</p>
+                    <h2>CAD Schematics</h2>
                 </div>
                 <div class="grid-3">
                     <div class="model-card">
@@ -701,54 +655,16 @@
                 </div>
             </div>
 
-            <!-- Tab 2: Team Roster & Google Spreadsheet -->
-            <div id="tab-roster" class="tab-content">
-                <div class="section-header">
-                    <h2>Leadership Roster</h2>
-                    <p>Core student leadership and team assignments</p>
-                </div>
-                
-                <table class="roster-table">
-                    <thead>
-                        <tr>
-                            <th>Member Name</th>
-                            <th>Role</th>
-                            <th>Primary Focus</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Braeden Taylor</strong></td>
-                            <td>Team Lead</td>
-                            <td>Team Operations & Strategic Planning</td>
-                            <td><span class="badge-status">Active</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Jayden Kuntzman</strong></td>
-                            <td>Build Lead</td>
-                            <td>Mechanical Fabrication & Assembly</td>
-                            <td><span class="badge-status">Active</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Noah Taylor</strong></td>
-                            <td>Programming Lead</td>
-                            <td>Autonomous Algorithms & Controls</td>
-                            <td><span class="badge-status">Active</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-
+            <!-- Tab 2: Interactive Spreadsheet -->
+            <div id="tab-spreadsheet" class="tab-content">
                 <div class="spreadsheet-actions">
-                    <div>
-                        <h3 style="font-size: 1.1rem; font-weight: 700;">Official Team Ledger & Spreadsheet</h3>
-                        <p style="font-size: 0.875rem; color: var(--text-muted);">Real-time access to the shared Google Sheet ledger</p>
-                    </div>
+                    <h2 style="font-size: 1.375rem; font-weight: 700;">Team Spreadsheet</h2>
                     <a href="https://docs.google.com/spreadsheets/d/1tSKFE4k95sZJTGXN4_wLrTc2KsnTMYZp_erhrUY7NNY/edit?gid=244157968#gid=244157968" target="_blank" class="btn-outline">Open in Google Sheets</a>
                 </div>
 
+                <!-- Interactive Google Sheets Preview -->
                 <div class="spreadsheet-container">
-                    <iframe src="https://docs.google.com/spreadsheets/d/1tSKFE4k95sZJTGXN4_wLrTc2KsnTMYZp_erhrUY7NNY/htmlembed?gid=244157968"></iframe>
+                    <iframe src="https://docs.google.com/spreadsheets/d/1tSKFE4k95sZJTGXN4_wLrTc2KsnTMYZp_erhrUY7NNY/edit?rm=minimal&gid=244157968"></iframe>
                 </div>
             </div>
 
@@ -756,9 +672,16 @@
             <div id="tab-about" class="tab-content">
                 <div class="section-header">
                     <h2>About Team 24171</h2>
-                    <p>Stony Point High School Robotics Guild</p>
                 </div>
-                <p style="color: var(--text-secondary); font-size: 0.9375rem;"><strong>Gearheads Robotics (#24171)</strong> is a student-led robotics program based at Stony Point High School. Our team emphasizes practical engineering, computer science, project management, and collaborative problem solving.</p>
+                <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 16px;">
+                    <strong>Gearheads Robotics (#24171)</strong> is a student-led robotics program based at Stony Point High School. Our team emphasizes practical engineering, computer science, project management, and collaborative problem-solving.
+                </p>
+                <div style="background-color: var(--bg-subtle); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                    <h4 style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 8px;">Leadership</h4>
+                    <p style="font-size: 0.875rem; color: var(--text-secondary);"><strong>Team Lead:</strong> Braeden Taylor</p>
+                    <p style="font-size: 0.875rem; color: var(--text-secondary);"><strong>Build Lead:</strong> Jayden Kuntzman</p>
+                    <p style="font-size: 0.875rem; color: var(--text-secondary);"><strong>Programming Lead:</strong> Noah Taylor</p>
+                </div>
             </div>
         </div>
 
@@ -766,7 +689,6 @@
         <div class="card" id="calendar">
             <div class="section-header">
                 <h2>Schedule & Calendar</h2>
-                <p>Workshop hours and competition calendar</p>
             </div>
             <div class="calendar-container">
                 <iframe src="https://calendar.google.com/calendar/embed?src=c_caaeb35cf2c2707a4a3ed47d7670f56151de98452e3d2b161612edb003320ac7%40group.calendar.google.com&ctz=America%2FChicago"></iframe>
@@ -797,7 +719,7 @@
         let announcementCounter = 1;
 
         function switchTab(tabName) {
-            ['models', 'roster', 'about'].forEach(t => {
+            ['models', 'spreadsheet', 'about'].forEach(t => {
                 const btn = document.getElementById(`btn-tab-${t}`);
                 const content = document.getElementById(`tab-${t}`);
                 if (t === tabName) {
