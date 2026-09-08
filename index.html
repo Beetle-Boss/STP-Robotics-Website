@@ -79,7 +79,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 24px;
+            padding: 12px 24px;
         }
 
         .brand {
@@ -87,6 +87,18 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
+        }
+
+        .tiger-logo-icon {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: var(--transition-smooth);
+        }
+
+        .tiger-logo-icon:hover {
+            transform: scale(1.05);
         }
 
         .brand-badge {
@@ -498,12 +510,13 @@
 <body>
 
     <div class="announcement-bar">
-        <span>NEXT WORKSHOP:</span> Pneumatic Valve & Brass Gear Assembly — Friday at 4:30 PM in Lab 104.
+        <span>NEXT WORKSHOP:</span> Pneumatic Valve & Gear Assembly — Friday at 4:30 PM in Lab 104.
     </div>
 
     <header>
         <div class="nav-container">
             <a href="#" class="brand">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Tiger_mascot.svg/1200px-Tiger_mascot.svg.png" alt="Stony Point Tiger Logo" class="tiger-logo-icon">
                 <span class="brand-badge">⚙️ GEARHEADS</span>
                 <span class="brand-text">Robotics Workshop</span>
             </a>
@@ -518,7 +531,7 @@
 
     <section class="hero">
         <div class="hero-container">
-            <div class="hero-eyebrow">FIRST Robotics Competition Team #4812</div>
+            <div class="hero-eyebrow">Stony Point High School • Team #24171</div>
             <h1 class="hero-title">GEARHEADS ROBOTICS</h1>
             <p class="hero-subtitle">"Forging the Future Through Precision Engineering & Innovation"</p>
         </div>
@@ -538,8 +551,8 @@
             <div id="announcements-list">
                 <div class="announcement-card">
                     <h4>Chassis Fabrication Phase Complete</h4>
-                    <div class="ann-meta">Posted by Chief Engineer Lead • Oct 14</div>
-                    <p>Our brass-anodized drive train chassis has cleared tolerance testing. Pneumatic pistons and gear reduction boxes are ready for mounting.</p>
+                    <div class="ann-meta">Posted by Jayden Kuntzman • Oct 14</div>
+                    <p>Our drive train chassis has cleared tolerance testing. Pneumatic pistons and gear reduction boxes are ready for mounting.</p>
                     <button class="btn-action" onclick="toggleLike(this)">⚙️ Acknowledge (4)</button>
                 </div>
             </div>
@@ -569,7 +582,7 @@
                     <div class="model-card">
                         <span class="badge">OnShape / STL</span>
                         <h4>Drivetrain Chassis</h4>
-                        <p>6-Wheel West Coast Drive with integrated bronze gearboxes and sprockets.</p>
+                        <p>6-Wheel West Coast Drive with integrated gearboxes and sprockets.</p>
                         <a href="#" class="btn-download">View Blueprint</a>
                     </div>
                     <div class="model-card">
@@ -598,21 +611,21 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Arthur Pendelton</strong></td>
-                            <td>Captain / CAD Lead</td>
-                            <td>Elevator Rigging</td>
+                            <td><strong>Braeden Taylor</strong></td>
+                            <td>Team Lead</td>
+                            <td>Team Operations & Strategy</td>
                             <td><span style="color: var(--brass-main); font-weight:700;">In Progress</span></td>
                         </tr>
                         <tr>
-                            <td><strong>Clara Watt</strong></td>
-                            <td>Pneumatics Lead</td>
-                            <td>Regulator Calibration</td>
-                            <td><span style="color: #2e7d32; font-weight:700;">Verified</span></td>
+                            <td><strong>Jayden Kuntzman</strong></td>
+                            <td>Build Lead</td>
+                            <td>Chassis & Elevator Mechanism</td>
+                            <td><span style="color: #2e7d32; font-weight:700;">Active</span></td>
                         </tr>
                         <tr>
-                            <td><strong>Jasper Sterling</strong></td>
-                            <td>Lead Programmer</td>
-                            <td>Gyroscope PID Loops</td>
+                            <td><strong>Noah Taylor</strong></td>
+                            <td>Programming Lead</td>
+                            <td>Autonomous Routines & PID Loops</td>
                             <td><span style="color: var(--brass-main); font-weight:700;">Testing</span></td>
                         </tr>
                     </tbody>
@@ -622,10 +635,10 @@
             <!-- Tab 3: About Us -->
             <div id="tab-about" class="tab-content">
                 <div class="section-header">
-                    <h2>About Team Gearheads</h2>
+                    <h2>About Stony Point Gearheads</h2>
                     <p>Industrial design meets modern autonomous robotics</p>
                 </div>
-                <p>Founded with a passion for creative engineering and mechanical elegance, <strong>Gearheads Robotics</strong> combines industrial craftsmanship with autonomous software, custom machining, and pneumatic systems.</p>
+                <p>Founded with a passion for creative engineering and mechanical elegance, <strong>Gearheads Robotics (#24171)</strong> combines industrial craftsmanship with autonomous software, custom machining, and pneumatic systems.</p>
             </div>
         </div>
 
@@ -657,7 +670,7 @@
     </div>
 
     <footer>
-        &copy; 2026 Gearheads Robotics Team. All blueprints and dispatches reserved.
+        &copy; 2026 Stony Point High School Gearheads Robotics Team #24171. All blueprints and dispatches reserved.
     </footer>
 
     <script>
