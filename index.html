@@ -4,24 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gearheads Robotics | Team 24171</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #f8f8f6;
-            --surface-card: #ffffff;
-            --surface-subtle: #f2f0ea;
-            --border-color: #e4e0d5;
-            --border-focus: #b8860b;
-            --text-primary: #1c1a17;
-            --text-secondary: #66625d;
-            --accent-brass: #a37318;
-            --accent-brass-hover: #855d10;
-            --accent-light: #f5eedf;
-            --accent-status: #2e6b38;
-            --radius-md: 8px;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-subtle: #f1f5f9;
+            --border-color: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --brand-gold: #d97706;
+            --brand-gold-hover: #b45309;
+            --brand-gold-light: #fef3c7;
+            --accent-blue: #2563eb;
+            --radius-lg: 10px;
+            --radius-md: 6px;
             --radius-sm: 4px;
-            --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.04);
-            --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.2s ease-in-out;
         }
 
         * {
@@ -31,53 +34,45 @@
         }
 
         body {
-            background-color: var(--bg-main);
+            background-color: var(--bg-body);
             color: var(--text-primary);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4, .brand-text, .hero-eyebrow, .tab-btn {
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: -0.01em;
-        }
-
         .announcement-bar {
-            background-color: var(--accent-light);
-            color: var(--text-primary);
+            background-color: var(--text-primary);
+            color: #ffffff;
             text-align: center;
-            padding: 9px 16px;
-            font-size: 0.825rem;
-            font-weight: 600;
-            border-bottom: 1px solid var(--border-color);
+            padding: 8px 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
         }
 
         .announcement-bar strong {
-            color: var(--accent-brass);
-            text-transform: uppercase;
+            color: #fbbf24;
             margin-right: 6px;
-            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         header {
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border-color);
         }
 
         .nav-container {
-            max-width: 1120px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 24px;
+            padding: 12px 24px;
         }
 
         .brand {
@@ -88,30 +83,31 @@
         }
 
         .tiger-logo {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             object-fit: contain;
         }
 
         .brand-badge {
-            background: var(--text-primary);
-            color: #ffffff;
+            background: var(--brand-gold-light);
+            color: var(--brand-gold-hover);
             font-weight: 700;
             font-size: 0.75rem;
-            padding: 4px 8px;
+            padding: 3px 8px;
             border-radius: var(--radius-sm);
-            letter-spacing: 0.05em;
+            border: 1px solid rgba(217, 119, 6, 0.2);
         }
 
         .brand-text {
-            font-size: 1.05rem;
+            font-size: 1.125rem;
             font-weight: 700;
             color: var(--text-primary);
+            letter-spacing: -0.02em;
         }
 
         .nav-links {
             display: flex;
-            gap: 28px;
+            gap: 24px;
             list-style: none;
             align-items: center;
         }
@@ -120,65 +116,96 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 500;
             transition: var(--transition);
         }
 
         .nav-links a:hover {
-            color: var(--accent-brass);
+            color: var(--brand-gold);
         }
 
-        .btn-calendar {
-            background-color: var(--accent-brass);
+        .btn-primary {
+            background-color: var(--brand-gold);
             color: #ffffff !important;
             padding: 8px 16px;
-            border-radius: var(--radius-sm);
-            font-size: 0.825rem !important;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem !important;
             font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
         }
 
-        .btn-calendar:hover {
-            background-color: var(--accent-brass-hover);
+        .btn-primary:hover {
+            background-color: var(--brand-gold-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-subtle);
+            border-color: var(--border-hover);
         }
 
         .hero {
-            background-color: #ffffff;
-            padding: 140px 24px 64px;
+            background-color: var(--bg-card);
+            padding: 80px 24px 56px;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
         }
 
         .hero-container {
-            max-width: 760px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .hero-eyebrow {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--accent-brass);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--brand-gold);
             margin-bottom: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.05em;
         }
 
         .hero-title {
-            font-size: 2.85rem;
-            line-height: 1.15;
+            font-size: 2.75rem;
+            line-height: 1.2;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 16px;
+            letter-spacing: -0.03em;
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.125rem;
             color: var(--text-secondary);
             font-weight: 400;
+            max-width: 640px;
+            margin: 0 auto;
         }
 
         .main-container {
-            max-width: 1120px;
-            margin: 48px auto;
+            max-width: 1200px;
+            margin: 40px auto;
             padding: 0 24px;
         }
 
@@ -192,237 +219,305 @@
         }
 
         .section-header h2 {
-            font-size: 1.4rem;
+            font-size: 1.375rem;
             color: var(--text-primary);
             font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .section-header p {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 0.875rem;
         }
 
-        .card-container {
-            background-color: var(--surface-card);
+        .card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 32px;
+        }
+
+        /* Announcements & Replies */
+        .announcement-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            padding: 28px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-subtle);
-            margin-bottom: 40px;
-        }
-
-        .btn-secondary {
-            background-color: var(--surface-subtle);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            font-size: 0.825rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent-brass);
-            color: var(--accent-brass);
-            background-color: #ffffff;
-        }
-
-        .dispatch-card {
-            background-color: var(--surface-subtle);
-            border: 1px solid var(--border-color);
-            border-left: 3px solid var(--accent-brass);
             padding: 20px;
-            border-radius: var(--radius-sm);
             margin-top: 16px;
         }
 
-        .dispatch-card h4 {
+        .announcement-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .announcement-title {
             font-size: 1rem;
+            font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 4px;
         }
 
-        .dispatch-card .meta {
-            font-size: 0.775rem;
+        .announcement-meta {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .announcement-body {
+            font-size: 0.9375rem;
             color: var(--text-secondary);
-            margin-bottom: 10px;
+            margin-bottom: 16px;
         }
 
-        .dispatch-card p {
-            font-size: 0.9rem;
-            color: var(--text-primary);
+        .announcement-actions {
+            display: flex;
+            gap: 12px;
+            border-top: 1px solid var(--bg-subtle);
+            padding-top: 12px;
         }
 
         .btn-action {
-            background-color: var(--surface-card);
-            border: 1px solid var(--border-color);
-            padding: 6px 12px;
-            border-radius: var(--radius-sm);
-            font-size: 0.775rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.8125rem;
             font-weight: 600;
-            color: var(--text-secondary);
             cursor: pointer;
-            margin-top: 12px;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
             transition: var(--transition);
         }
 
         .btn-action:hover {
-            border-color: var(--accent-brass);
-            color: var(--accent-brass);
+            color: var(--brand-gold);
+            background-color: var(--bg-subtle);
         }
 
-        .tabs-wrapper {
-            background-color: var(--surface-card);
+        /* Replies Container */
+        .replies-container {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--border-color);
+            background-color: var(--bg-subtle);
+            padding: 16px;
             border-radius: var(--radius-md);
+        }
+
+        .reply-item {
+            background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-subtle);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 10px;
+        }
+
+        .reply-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .reply-author {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .reply-body {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .reply-form {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .reply-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            outline: none;
+        }
+
+        .reply-input:focus {
+            border-color: var(--brand-gold);
+        }
+
+        /* Tabs Navigation */
+        .tabs-wrapper {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
             overflow: hidden;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
 
         .tab-buttons {
             display: flex;
-            background-color: var(--surface-subtle);
+            background-color: var(--bg-subtle);
             border-bottom: 1px solid var(--border-color);
             padding: 6px 6px 0;
             gap: 4px;
         }
 
         .tab-btn {
-            flex: 1;
-            padding: 12px 16px;
+            padding: 12px 20px;
             background: none;
             border: 1px solid transparent;
             border-bottom: none;
-            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
             font-size: 0.875rem;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             cursor: pointer;
             transition: var(--transition);
         }
 
         .tab-btn.active {
-            background: var(--surface-card);
-            color: var(--accent-brass);
+            background: var(--bg-card);
+            color: var(--brand-gold);
             border-color: var(--border-color);
         }
 
         .tab-content {
             display: none;
-            padding: 32px;
+            padding: 28px;
         }
 
         .tab-content.active {
             display: block;
         }
 
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-top: 16px;
-        }
-
-        .model-card {
-            background-color: var(--surface-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            padding: 20px;
-            transition: var(--transition);
-        }
-
-        .model-card:hover {
-            border-color: var(--accent-brass);
-        }
-
-        .model-card h4 {
-            font-size: 1rem;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        .model-card p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: var(--accent-light);
-            color: var(--accent-brass);
-            font-size: 0.725rem;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: var(--radius-sm);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-
+        /* Data Tables & Spreadsheets */
         .roster-table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-            margin-top: 12px;
+            margin-bottom: 24px;
         }
 
         .roster-table th {
-            background-color: var(--surface-subtle);
+            background-color: var(--bg-subtle);
             color: var(--text-primary);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            padding: 12px 16px;
+            padding: 10px 14px;
             border-bottom: 1px solid var(--border-color);
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.05em;
         }
 
         .roster-table td {
-            padding: 14px 16px;
+            padding: 12px 14px;
             border-bottom: 1px solid var(--border-color);
             font-size: 0.875rem;
             color: var(--text-primary);
         }
 
-        .status-pill {
+        .badge-status {
             display: inline-block;
             font-size: 0.75rem;
             font-weight: 600;
             padding: 2px 8px;
             border-radius: 12px;
-            background-color: #e8f5e9;
-            color: var(--accent-status);
+            background-color: #dcfce7;
+            color: #166534;
         }
 
-        .calendar-section {
-            background-color: var(--surface-card);
-            border-radius: var(--radius-md);
-            padding: 28px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-subtle);
-            margin-bottom: 40px;
-        }
-
-        .calendar-embed-container {
+        .spreadsheet-container {
             width: 100%;
-            height: 560px;
-            border-radius: var(--radius-sm);
-            overflow: hidden;
+            height: 500px;
             border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
             margin-top: 16px;
         }
 
-        .calendar-embed-container iframe {
+        .spreadsheet-container iframe {
             width: 100%;
             height: 100%;
             border: 0;
         }
 
+        .spreadsheet-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        /* Cards Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .model-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .model-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-md);
+        }
+
+        .model-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .model-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--bg-subtle);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+        }
+
+        /* Calendar */
+        .calendar-container {
+            width: 100%;
+            height: 520px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-top: 16px;
+        }
+
+        .calendar-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Modals */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -430,7 +525,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.3);
+            background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(4px);
             z-index: 2000;
             justify-content: center;
@@ -438,17 +533,18 @@
         }
 
         .modal-card {
-            background: var(--surface-card);
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
             padding: 28px;
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-lg);
             width: 90%;
-            max-width: 460px;
-            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+            max-width: 480px;
+            box-shadow: var(--shadow-md);
         }
 
         .modal-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            font-weight: 700;
             margin-bottom: 16px;
             color: var(--text-primary);
         }
@@ -457,7 +553,7 @@
             width: 100%;
             padding: 10px 12px;
             margin-bottom: 12px;
-            background: var(--surface-subtle);
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
             border-radius: var(--radius-sm);
@@ -467,76 +563,35 @@
 
         .modal-card input:focus, .modal-card textarea:focus {
             outline: none;
-            border-color: var(--accent-brass);
-            background: #ffffff;
+            border-color: var(--brand-gold);
         }
 
         .modal-card textarea {
-            height: 90px;
+            height: 100px;
             resize: vertical;
         }
 
         .modal-actions {
             display: flex;
             justify-content: flex-end;
-            gap: 10px;
+            gap: 8px;
             margin-top: 8px;
         }
 
-        .btn-cancel {
-            background: var(--surface-subtle);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
-            padding: 8px 14px;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            font-size: 0.825rem;
-            cursor: pointer;
-        }
-
-        .btn-submit {
-            background: var(--accent-brass);
-            color: #ffffff;
-            border: none;
-            padding: 8px 14px;
-            font-weight: 600;
-            font-size: 0.825rem;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-        }
-
         footer {
-            background-color: var(--surface-card);
-            color: var(--text-secondary);
+            background-color: var(--bg-card);
+            color: var(--text-muted);
             padding: 32px 24px;
             border-top: 1px solid var(--border-color);
-            font-size: 0.825rem;
+            font-size: 0.8125rem;
             text-align: center;
-        }
-
-        .btn-download {
-            display: inline-block;
-            background: var(--accent-light);
-            color: var(--accent-brass);
-            text-decoration: none;
-            padding: 6px 12px;
-            font-size: 0.775rem;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--accent-brass);
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .btn-download:hover {
-            background: var(--accent-brass);
-            color: #ffffff;
         }
     </style>
 </head>
 <body>
 
     <div class="announcement-bar">
-        <strong>Next Workshop</strong> Pneumatic Valve & Gear Assembly — Friday at 4:30 PM in Lab 104
+        <strong>Upcoming Workshop</strong> Pneumatic Valve and Assembly — Friday at 4:30 PM in Room 104
     </div>
 
     <header>
@@ -548,9 +603,9 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#tab-section" onclick="switchTab('models')">CAD Models</a></li>
-                <li><a href="#tab-section" onclick="switchTab('roster')">Team Roster</a></li>
+                <li><a href="#tab-section" onclick="switchTab('roster')">Roster & Ledger</a></li>
                 <li><a href="#tab-section" onclick="switchTab('about')">About</a></li>
-                <li><a href="#calendar" class="btn-calendar">Calendar</a></li>
+                <li><a href="#calendar" class="btn-primary">Calendar</a></li>
             </ul>
         </div>
     </header>
@@ -558,28 +613,54 @@
     <section class="hero">
         <div class="hero-container">
             <div class="hero-eyebrow">Stony Point High School • Team 24171</div>
-            <h1 class="hero-title">GEARHEADS ROBOTICS</h1>
-            <p class="hero-subtitle">Engineering high-performance autonomous and teleoperated systems.</p>
+            <h1 class="hero-title">Gearheads Robotics</h1>
+            <p class="hero-subtitle">Engineering competitive autonomous and teleoperated robotic systems for the FIRST Robotics Competition.</p>
         </div>
     </section>
 
     <div class="main-container">
 
-        <!-- Workshop Updates -->
-        <div class="card-container">
+        <!-- Team Announcements Section -->
+        <div class="card">
             <div class="section-header">
                 <div>
-                    <h2>Workshop Dispatches</h2>
-                    <p>Engineering notes, schedules, and build logs</p>
+                    <h2>Team Announcements</h2>
+                    <p>Build updates, schedules, and engineering notes</p>
                 </div>
-                <button class="btn-secondary" onclick="openModal()">+ New Dispatch</button>
+                <button class="btn-outline" onclick="openModal()">New Announcement</button>
             </div>
+            
             <div id="announcements-list">
-                <div class="dispatch-card">
-                    <h4>Chassis Fabrication Phase Complete</h4>
-                    <div class="meta">Posted by Jayden Kuntzman • Build Lead</div>
-                    <p>The drive train chassis has cleared alignment and tolerance testing. Pneumatic assembly and drive gearboxes are ready for mounting.</p>
-                    <button class="btn-action" onclick="toggleLike(this)">Acknowledge (4)</button>
+                <!-- Sample Announcement Card 1 -->
+                <div class="announcement-card" id="announcement-1">
+                    <div class="announcement-header">
+                        <span class="announcement-title">Chassis Fabrication Phase Complete</span>
+                    </div>
+                    <div class="announcement-meta">Posted by Jayden Kuntzman • Build Lead</div>
+                    <div class="announcement-body">
+                        The drive train chassis has cleared tolerance testing. Pneumatic pistons and gear reduction boxes are ready for mounting during Friday's session.
+                    </div>
+                    <div class="announcement-actions">
+                        <button class="btn-action" onclick="toggleAcknowledge(this)">Acknowledge (4)</button>
+                        <button class="btn-action" onclick="toggleReplySection('replies-1')">Replies (1)</button>
+                    </div>
+
+                    <!-- Replies Thread -->
+                    <div class="replies-container" id="replies-1" style="display: none;">
+                        <div class="reply-list" id="reply-list-1">
+                            <div class="reply-item">
+                                <div class="reply-header">
+                                    <span class="reply-author">Noah Taylor</span>
+                                    <span>10 mins ago</span>
+                                </div>
+                                <div class="reply-body">Wiring harnesses are mapped and ready to route as soon as mechanical mounting finishes.</div>
+                            </div>
+                        </div>
+                        <div class="reply-form">
+                            <input type="text" class="reply-input" id="reply-input-1" placeholder="Write a reply...">
+                            <button class="btn-primary" onclick="postReply(1)">Reply</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -587,50 +668,51 @@
         <!-- Main Content Tabs -->
         <div class="tabs-wrapper" id="tab-section">
             <div class="tab-buttons">
-                <button class="tab-btn active" onclick="switchTab('models')">CAD Models</button>
-                <button class="tab-btn" onclick="switchTab('roster')">Team Roster</button>
-                <button class="tab-btn" onclick="switchTab('about')">About Us</button>
+                <button class="tab-btn active" id="btn-tab-models" onclick="switchTab('models')">CAD Models</button>
+                <button class="tab-btn" id="btn-tab-roster" onclick="switchTab('roster')">Team Roster & Spreadsheet</button>
+                <button class="tab-btn" id="btn-tab-about" onclick="switchTab('about')">About Us</button>
             </div>
 
             <!-- Tab 1: Models -->
             <div id="tab-models" class="tab-content active">
                 <div class="section-header">
-                    <h2>CAD Schematics & Blueprints</h2>
-                    <p>Mechanical designs and 3D geometry files</p>
+                    <h2>CAD Schematics & Schematics</h2>
+                    <p>Downloadable STEP and OnShape models for Team 24171 assemblies</p>
                 </div>
                 <div class="grid-3">
                     <div class="model-card">
-                        <span class="badge">STEP / Fusion 360</span>
+                        <span class="tag">STEP / Fusion 360</span>
                         <h4>Pneumatic Gripper v2.1</h4>
                         <p>High-torque dual claw powered by dual-acting air cylinders with precision gear linkages.</p>
-                        <a href="#" class="btn-download">Download STEP File</a>
+                        <a href="#" class="btn-outline">Download STEP File</a>
                     </div>
                     <div class="model-card">
-                        <span class="badge">OnShape / STL</span>
+                        <span class="tag">OnShape / STL</span>
                         <h4>Drivetrain Chassis</h4>
                         <p>6-Wheel West Coast Drive assembly with custom gearbox mounts and sprocket guards.</p>
-                        <a href="#" class="btn-download">View Blueprint</a>
+                        <a href="#" class="btn-outline">View Model</a>
                     </div>
                     <div class="model-card">
-                        <span class="badge">SolidWorks</span>
-                        <h4>Elevator Mechanism</h4>
+                        <span class="tag">SolidWorks</span>
+                        <h4>Elevator Assembly</h4>
                         <p>Continuous rigging system driven by a planetary gear reduction for multi-stage extension.</p>
-                        <a href="#" class="btn-download">Download CAD Package</a>
+                        <a href="#" class="btn-outline">Download CAD Package</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab 2: Team Roster -->
+            <!-- Tab 2: Team Roster & Google Spreadsheet -->
             <div id="tab-roster" class="tab-content">
                 <div class="section-header">
-                    <h2>Team Roster & Leadership</h2>
-                    <p>Student leads and active sub-team assignments</p>
+                    <h2>Leadership Roster</h2>
+                    <p>Core student leadership and team assignments</p>
                 </div>
+                
                 <table class="roster-table">
                     <thead>
                         <tr>
                             <th>Member Name</th>
-                            <th>Leadership Role</th>
+                            <th>Role</th>
                             <th>Primary Focus</th>
                             <th>Status</th>
                         </tr>
@@ -639,58 +721,70 @@
                         <tr>
                             <td><strong>Braeden Taylor</strong></td>
                             <td>Team Lead</td>
-                            <td>Operations, Strategic Planning & Coordination</td>
-                            <td><span class="status-pill">Active</span></td>
+                            <td>Team Operations & Strategic Planning</td>
+                            <td><span class="badge-status">Active</span></td>
                         </tr>
                         <tr>
                             <td><strong>Jayden Kuntzman</strong></td>
                             <td>Build Lead</td>
-                            <td>Mechanical Design, Fabrication & Chassis</td>
-                            <td><span class="status-pill">Active</span></td>
+                            <td>Mechanical Fabrication & Assembly</td>
+                            <td><span class="badge-status">Active</span></td>
                         </tr>
                         <tr>
                             <td><strong>Noah Taylor</strong></td>
                             <td>Programming Lead</td>
-                            <td>Autonomous Routines, TeleOp & PID Control</td>
-                            <td><span class="status-pill">Active</span></td>
+                            <td>Autonomous Algorithms & Controls</td>
+                            <td><span class="badge-status">Active</span></td>
                         </tr>
                     </tbody>
                 </table>
+
+                <div class="spreadsheet-actions">
+                    <div>
+                        <h3 style="font-size: 1.1rem; font-weight: 700;">Official Team Ledger & Spreadsheet</h3>
+                        <p style="font-size: 0.875rem; color: var(--text-muted);">Real-time access to the shared Google Sheet ledger</p>
+                    </div>
+                    <a href="https://docs.google.com/spreadsheets/d/1tSKFE4k95sZJTGXN4_wLrTc2KsnTMYZp_erhrUY7NNY/edit?gid=244157968#gid=244157968" target="_blank" class="btn-outline">Open in Google Sheets</a>
+                </div>
+
+                <div class="spreadsheet-container">
+                    <iframe src="https://docs.google.com/spreadsheets/d/1tSKFE4k95sZJTGXN4_wLrTc2KsnTMYZp_erhrUY7NNY/htmlembed?gid=244157968"></iframe>
+                </div>
             </div>
 
             <!-- Tab 3: About Us -->
             <div id="tab-about" class="tab-content">
                 <div class="section-header">
                     <h2>About Team 24171</h2>
-                    <p>Stony Point High School Robotics</p>
+                    <p>Stony Point High School Robotics Guild</p>
                 </div>
-                <p><strong>Gearheads Robotics (#24171)</strong> is a student-led team based at Stony Point High School. Our mission centers on hands-on engineering, software development, and mechanical innovation through competitive robotics.</p>
+                <p style="color: var(--text-secondary); font-size: 0.9375rem;"><strong>Gearheads Robotics (#24171)</strong> is a student-led robotics program based at Stony Point High School. Our team emphasizes practical engineering, computer science, project management, and collaborative problem solving.</p>
             </div>
         </div>
 
-        <!-- Calendar Section -->
-        <div class="calendar-section" id="calendar">
+        <!-- Google Calendar Section -->
+        <div class="card" id="calendar">
             <div class="section-header">
-                <h2>Schedule & Events</h2>
+                <h2>Schedule & Calendar</h2>
                 <p>Workshop hours and competition calendar</p>
             </div>
-            <div class="calendar-embed-container">
-                <iframe src="https://calendar.google.com/calendar/embed?src=c_caaeb35cf2c2707a4a3ed47d7670f56151de98452e3d2b161612edb003320ac7%40group.calendar.google.com&ctz=America%2FChicago" frameborder="0" scrolling="no"></iframe>
+            <div class="calendar-container">
+                <iframe src="https://calendar.google.com/calendar/embed?src=c_caaeb35cf2c2707a4a3ed47d7670f56151de98452e3d2b161612edb003320ac7%40group.calendar.google.com&ctz=America%2FChicago"></iframe>
             </div>
         </div>
 
     </div>
 
-    <!-- Modal for Adding Dispatches -->
+    <!-- Modal for Adding New Announcement -->
     <div class="modal-overlay" id="modal">
         <div class="modal-card">
-            <h3>New Workshop Dispatch</h3>
-            <input type="text" id="ann-title" placeholder="Dispatch Title">
-            <input type="text" id="ann-author" placeholder="Your Name / Role">
-            <textarea id="ann-body" placeholder="Write dispatch details..."></textarea>
+            <h3>New Announcement</h3>
+            <input type="text" id="ann-title" placeholder="Title">
+            <input type="text" id="ann-author" placeholder="Author Name / Role">
+            <textarea id="ann-body" placeholder="Announcement details..."></textarea>
             <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-                <button class="btn-submit" onclick="submitAnnouncement()">Publish</button>
+                <button class="btn-outline" onclick="closeModal()">Cancel</button>
+                <button class="btn-primary" onclick="submitAnnouncement()">Publish</button>
             </div>
         </div>
     </div>
@@ -700,12 +794,12 @@
     </footer>
 
     <script>
-        function id(e) { return document.getElementById(e); }
+        let announcementCounter = 1;
 
         function switchTab(tabName) {
             ['models', 'roster', 'about'].forEach(t => {
-                const btn = document.querySelector(`.tab-btn[onclick="switchTab('${t}')"]`);
-                const content = id(`tab-${t}`);
+                const btn = document.getElementById(`btn-tab-${t}`);
+                const content = document.getElementById(`tab-${t}`);
                 if (t === tabName) {
                     if (content) content.classList.add('active');
                     if (btn) btn.classList.add('active');
@@ -716,36 +810,79 @@
             });
         }
 
-        function openModal() { id('modal').style.display = 'flex'; }
-        function closeModal() { id('modal').style.display = 'none'; }
+        function openModal() { document.getElementById('modal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('modal').style.display = 'none'; }
 
-        function submitAnnouncement() {
-            const title = id('ann-title').value;
-            const author = id('ann-author').value;
-            const body = id('ann-body').value;
-
-            if (!title || !body) return alert('Please enter a title and message.');
-
-            const card = document.createElement('div');
-            card.className = 'dispatch-card';
-            card.innerHTML = `
-                <h4>${title}</h4>
-                <div class="meta">Posted by ${author || 'Team Member'} • Just now</div>
-                <p>${body}</p>
-                <button class="btn-action" onclick="toggleLike(this)">Acknowledge (0)</button>
-            `;
-
-            id('announcements-list').prepend(card);
-            id('ann-title').value = '';
-            id('ann-author').value = '';
-            id('ann-body').value = '';
-            closeModal();
-        }
-
-        function toggleLike(btn) {
+        function toggleAcknowledge(btn) {
             let count = parseInt(btn.innerText.match(/\d+/)[0]) + 1;
             btn.innerText = `Acknowledge (${count})`;
-            btn.style.color = 'var(--accent-brass)';
+            btn.style.color = 'var(--brand-gold)';
+        }
+
+        function toggleReplySection(containerId) {
+            const container = document.getElementById(containerId);
+            if (container) {
+                container.style.display = container.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        function postReply(announcementId) {
+            const input = document.getElementById(`reply-input-${announcementId}`);
+            const replyList = document.getElementById(`reply-list-${announcementId}`);
+            
+            if (!input || !input.value.trim()) return;
+
+            const replyItem = document.createElement('div');
+            replyItem.className = 'reply-item';
+            replyItem.innerHTML = `
+                <div class="reply-header">
+                    <span class="reply-author">Team Member</span>
+                    <span>Just now</span>
+                </div>
+                <div class="reply-body">${input.value.trim()}</div>
+            `;
+
+            replyList.appendChild(replyItem);
+            input.value = '';
+        }
+
+        function submitAnnouncement() {
+            const title = document.getElementById('ann-title').value;
+            const author = document.getElementById('ann-author').value;
+            const body = document.getElementById('ann-body').value;
+
+            if (!title || !body) return alert('Please enter a title and content.');
+
+            announcementCounter++;
+            const currentId = announcementCounter;
+
+            const card = document.createElement('div');
+            card.className = 'announcement-card';
+            card.id = `announcement-${currentId}`;
+            card.innerHTML = `
+                <div class="announcement-header">
+                    <span class="announcement-title">${title}</span>
+                </div>
+                <div class="announcement-meta">Posted by ${author || 'Team Member'} • Just now</div>
+                <div class="announcement-body">${body}</div>
+                <div class="announcement-actions">
+                    <button class="btn-action" onclick="toggleAcknowledge(this)">Acknowledge (0)</button>
+                    <button class="btn-action" onclick="toggleReplySection('replies-${currentId}')">Replies (0)</button>
+                </div>
+                <div class="replies-container" id="replies-${currentId}" style="display: none;">
+                    <div class="reply-list" id="reply-list-${currentId}"></div>
+                    <div class="reply-form">
+                        <input type="text" class="reply-input" id="reply-input-${currentId}" placeholder="Write a reply...">
+                        <button class="btn-primary" onclick="postReply(${currentId})">Reply</button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('announcements-list').prepend(card);
+            document.getElementById('ann-title').value = '';
+            document.getElementById('ann-author').value = '';
+            document.getElementById('ann-body').value = '';
+            closeModal();
         }
     </script>
 </body>
