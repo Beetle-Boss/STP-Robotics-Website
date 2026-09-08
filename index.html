@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gearheads Robotics | Steampunk Engineering</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brass-main: #c59b27;
+            --brass-hover: #e5b838;
+            --brass-dark: #8c6a15;
+            --copper: #b87333;
+            --copper-light: #d98a43;
+            --steam-bg: #120d0a;
+            --steam-card: #1f1712;
+            --steam-card-light: #2c2018;
+            --steam-border: #4a3625;
+            --parchment-text: #e8dcc4;
+            --parchment-dim: #a69882;
+            --rust-accent: #8b2613;
+            --radius-xl: 12px;
+            --radius-lg: 8px;
+            --radius-sm: 4px;
+            --transition-smooth: all 0.25s ease-in-out;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier Prime', monospace;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--steam-bg);
+            color: var(--parchment-text);
+            line-height: 1.5;
+            font-weight: 400;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(197, 155, 39, 0.05) 0%, transparent 60%),
+                linear-gradient(to bottom, rgba(18, 13, 10, 0.8), rgba(18, 13, 10, 0.95));
+        }
+
+        h1, h2, h3, h4, .brand-text, .hero-eyebrow {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .announcement-bar {
+            background-color: #0a0705;
+            color: var(--parchment-text);
+            text-align: center;
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-bottom: 2px solid var(--brass-dark);
+        }
+
+        .announcement-bar span {
+            color: var(--brass-main);
+            font-weight: 700;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            background-color: rgba(31, 23, 18, 0.95);
+            border-bottom: 2px solid var(--copper);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
+        header.scrolled {
+            background-color: rgba(18, 13, 10, 0.98);
+            border-bottom: 2px solid var(--brass-main);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-badge {
+            background: linear-gradient(135deg, var(--brass-main), var(--copper));
+            color: var(--steam-bg);
+            font-weight: 900;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--brass-hover);
+            box-shadow: 0 0 10px rgba(197, 155, 39, 0.3);
+        }
+
+        .brand-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--parchment-text);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .nav-right-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--parchment-text);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--brass-main);
+            text-shadow: 0 0 8px rgba(197, 155, 39, 0.5);
+        }
+
+        .btn-calendar {
+            background: linear-gradient(135deg, var(--copper), var(--brass-dark));
+            color: var(--parchment-text) !important;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--brass-main);
+            font-size: 0.8rem !important;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .btn-calendar:hover {
+            background: linear-gradient(135deg, var(--brass-main), var(--copper));
+            color: var(--steam-bg) !important;
+        }
+
+        .hero {
+            background: linear-gradient(to bottom, rgba(18, 13, 10, 0.7), var(--steam-bg)), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: var(--parchment-text);
+            padding: 160px 24px 90px;
+            text-align: center;
+            position: relative;
+            border-bottom: 3px double var(--copper);
+        }
+
+        .hero-container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--brass-main);
+            margin-bottom: 14px;
+            text-shadow: 0 0 10px rgba(197, 155, 39, 0.4);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 18px;
+            text-shadow: 3px 3px 6px #000;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--parchment-dim);
+            max-width: 680px;
+            margin: 0 auto;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .main-container {
+            max-width: 1080px;
+            margin: 50px auto;
+            padding: 0 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--steam-border);
+            padding-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: var(--brass-main);
+        }
+
+        .section-header p {
+            color: var(--parchment-dim);
+            font-size: 0.9rem;
+        }
+
+        .announcements-container {
+            background-color: var(--steam-card);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1px solid var(--steam-border);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 48px;
+        }
+
+        .btn-add-announcement {
+            background: linear-gradient(to bottom, var(--brass-main), var(--brass-dark));
+            color: var(--steam-bg);
+            border: 1px solid var(--brass-hover);
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-add-announcement:hover {
+            background: var(--brass-hover);
+            box-shadow: 0 0 12px rgba(197, 155, 39, 0.6);
+        }
+
+        .announcement-card {
+            background-color: var(--steam-card-light);
+            border: 1px solid var(--steam-border);
+            border-left: 4px solid var(--copper);
+            padding: 20px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .announcement-card h4 {
+            font-size: 1.1rem;
+            color: var(--brass-main);
+            margin-bottom: 6px;
+        }
+
+        .announcement-card .ann-meta {
+            font-size: 0.8rem;
+            color: var(--parchment-dim);
+            margin-bottom: 10px;
+        }
+
+        .ann-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--steam-border);
+        }
+
+        .btn-action {
+            background-color: var(--steam-card);
+            border: 1px solid var(--steam-border);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            color: var(--parchment-text);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-action:hover {
+            border-color: var(--brass-main);
+            color: var(--brass-main);
+        }
+
+        .tabs-wrapper {
+            background-color: var(--steam-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--steam-border);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            margin-bottom: 48px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            background-color: #140e0a;
+            border-bottom: 2px solid var(--steam-border);
+            padding: 6px;
+            gap: 8px;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 14px 18px;
+            background: none;
+            border: 1px solid transparent;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            color: var(--parchment-dim);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--parchment-text);
+            border-color: var(--steam-border);
+        }
+
+        .tab-btn.active {
+            background: var(--steam-card-light);
+            color: var(--brass-main);
+            border: 1px solid var(--copper);
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 36px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .model-card {
+            background-color: var(--steam-card-light);
+            border: 1px solid var(--steam-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .model-card:hover {
+            border-color: var(--brass-main);
+            transform: translateY(-4px);
+        }
+
+        .model-card h4 {
+            color: var(--brass-main);
+            margin-bottom: 8px;
+        }
+
+        .model-card p {
+            font-size: 0.88rem;
+            color: var(--parchment-dim);
+            margin-bottom: 16px;
+        }
+
+        .model-card .badge {
+            display: inline-block;
+            background-color: var(--rust-accent);
+            color: var(--parchment-text);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+            border: 1px solid var(--steam-border);
+            border-radius: var(--radius-sm);
+        }
+
+        .steam-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background-color: var(--steam-card-light);
+        }
+
+        .steam-table th {
+            background-color: #140e0a;
+            color: var(--brass-main);
+            font-family: 'Cinzel', serif;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            border-bottom: 2px solid var(--copper);
+            text-transform: uppercase;
+        }
+
+        .steam-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--steam-border);
+            font-size: 0.88rem;
+            color: var(--parchment-text);
+        }
+
+        .steam-table tr:hover {
+            background-color: var(--steam-card);
+        }
+
+        .calendar-section {
+            background-color: var(--steam-card);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            border: 1px solid var(--steam-border);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 48px;
+        }
+
+        .calendar-embed-container {
+            width: 100%;
+            height: 580px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 2px solid var(--copper);
+            margin-top: 20px;
+            background-color: #ffffff;
+        }
+
+        .calendar-embed-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-card {
+            background: var(--steam-card);
+            border: 2px solid var(--brass-main);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+        }
+
+        .modal-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--brass-main);
+        }
+
+        .modal-card input, .modal-card textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 14px;
+            background: var(--steam-card-light);
+            border: 1px solid var(--steam-border);
+            color: var(--parchment-text);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+        }
+
+        .modal-card textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn-cancel {
+            background: var(--steam-card-light);
+            color: var(--parchment-text);
+            border: 1px solid var(--steam-border);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            background: var(--brass-main);
+            color: var(--steam-bg);
+            border: none;
+            padding: 8px 16px;
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #0a0705;
+            color: var(--parchment-dim);
+            padding: 48px 24px 32px;
+            margin-top: 80px;
+            border-top: 2px solid var(--copper);
+            font-size: 0.85rem;
+        }
+
+        .footer-container {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--steam-border);
+        }
+
+        .footer-brand p {
+            color: var(--brass-main);
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+        }
+
+        .footer-copy {
+            max-width: 1080px;
+            margin: 24px auto 0;
+            text-align: center;
+        }
+
+        .btn-download {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--copper), var(--brass-dark));
+            color: var(--parchment-text);
+            text-decoration: none;
+            padding: 8px 14px;
+            font-size: 0.8rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--brass-main);
+            font-weight: 700;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-download:hover {
+            background: var(--brass-main);
+            color: var(--steam-bg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="announcement-bar">
+        <span>NEXT WORKSHOP:</span> Pneumatic Valve & Brass Gear Assembly - Friday at 4:30 PM in Lab 104.
+    </div>
+
+    <header id="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <span class="brand-badge">⚙️ GEARHEADS</span>
+                <span class="brand-text">Robotics Workshop</span>
+            </a>
+            <div class="nav-right-group">
+                <ul class="nav-links">
+                    <li><a href="#tab-section" onclick="switchTab('models')">Models</a></li>
+                    <li><a href="#tab-section" onclick="switchTab('spreadsheet')">Team Spreadsheet</a></li>
+                    <li><a href="#tab-section" onclick="switchTab('about')">About Us</a></li>
+                    <li><a href="#calendar" class="btn-calendar">Calendar</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-eyebrow">FIRST Robotics Competition Team #4812</div>
+            <h1 class="hero-title">GEARHEADS ROBOTICS</h1>
+            <p class="hero-subtitle">"Forging the Future Through Steam, Steel & Silicon"</p>
+        </div>
+    </section>
+
+    <div class="main-container">
+
+        <!-- Dispatch / Announcements -->
+        <div class="announcements-container">
+            <div class="section-header">
+                <div>
+                    <h2>Telegraph Dispatches</h2>
+                    <p>Latest updates, build notices, and competition alerts</p>
+                </div>
+                <button class="btn-add-announcement" onclick="openModal()">+ New Dispatch</button>
+            </div>
+            <div id="announcements-list">
+                <div class="announcement-card">
+                    <h4>Chassis Fabrication Phase Complete</h4>
+                    <div class="ann-meta">Posted by Chief Engineer Lead • Oct 14</div>
+                    <p>Our brass-anodized drive train chassis has cleared tolerance testing. Pneumatic pistons and gear reduction boxes are ready for mounting.</p>
+                    <div class="ann-actions">
+                        <button class="btn-action" onclick="toggleLike(this)">⚙️ Acknowledge (4)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Tabs -->
+        <div class="tabs-wrapper" id="tab-section">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab('models')">⚙️ 3D Models & Specs</button>
+                <button class="tab-btn" onclick="switchTab('spreadsheet')">📊 Team Spreadsheet</button>
+                <button class="tab-btn" onclick="switchTab('about')">🕰️ About Us</button>
+            </div>
+
+            <!-- Tab 1: Models -->
+            <div id="tab-models" class="tab-content active">
+                <div class="section-header">
+                    <h2>CAD Schematics & 3D Models</h2>
+                    <p>Download, inspect, or review structural blueprints</p>
+                </div>
+                <div class="model-grid">
+                    <div class="model-card">
+                        <span class="badge">STEP / Fusion 360</span>
+                        <h4>Brass-Pneumatic Gripper v2.1</h4>
+                        <p>High-torque dual claw powered by dual-acting air cylinders with custom gear mesh joints.</p>
+                        <a href="#" class="btn-download">Download STEP File</a>
+                    </div>
+                    <div class="model-card">
+                        <span class="badge">OnShape / STL</span>
+                        <h4>Steampunk Drivetrain Chassis</h4>
+                        <p>6-Wheel West Coast Drive with integrated bronze gearboxes and heavy-duty sprockets.</p>
+                        <a href="#" class="btn-download">View Blueprint</a>
+                    </div>
+                    <div class="model-card">
+                        <span class="badge">SolidWorks</span>
+                        <h4>Clockwork Elevator Mechanism</h4>
+                        <p>Continuous rigging system driven by a planetary gear assembly for multi-stage extension.</p>
+                        <a href="#" class="btn-download">Download CAD Package</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Team Spreadsheet -->
+            <div id="tab-spreadsheet" class="tab-content">
+                <div class="section-header">
+                    <h2>Team Roster & Task Ledger</h2>
+                    <p>Member assignments, subsystem breakdown, and inventory tracking</p>
+                </div>
+                <div class="table-responsive">
+                    <table class="steam-table">
+                        <thead>
+                            <tr>
+                                <th>Subsystem / Member</th>
+                                <th>Primary Role</th>
+                                <th>Active Project</th>
+                                <th>Status</th>
+                                <th>Contact / Log</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Arthur Pendelton</strong></td>
+                                <td>Captain / CAD Lead</td>
+                                <td>Elevator Assembly Rigging</td>
+                                <td><span style="color: var(--brass-main);">In Progress</span></td>
+                                <td>a.pendelton@gearheads.org</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Clara Watt</strong></td>
+                                <td>Pneumatics Specialist</td>
+                                <td>Pressure Regulator Calibration</td>
+                                <td><span style="color: #4CAF50;">Verified</span></td>
+                                <td>c.watt@gearheads.org</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Jasper Sterling</strong></td>
+                                <td>Lead Programmer</td>
+                                <td>Autonomous Gyroscope PID</td>
+                                <td><span style="color: var(--brass-main);">Testing</span></td>
+                                <td>j.sterling@gearheads.org</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Eleanor Vance</strong></td>
+                                <td>Electrical & Wiring</td>
+                                <td>CAN Bus Harness Looming</td>
+                                <td><span style="color: #FF9800;">Pending Parts</span></td>
+                                <td>e.vance@gearheads.org</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab 3: About Us -->
+            <div id="tab-about" class="tab-content">
+                <div class="section-header">
+                    <h2>About Team Gearheads</h2>
+                    <p>Where Victorian aesthetics meet cutting-edge modern robotics</p>
+                </div>
+                <div style="line-height: 1.8; color: var(--parchment-text);">
+                    <p style="margin-bottom: 16px;">
+                        Founded with a passion for creative engineering and mechanical elegance, <strong>Gearheads Robotics</strong> blends vintage Victorian aesthetic with state-of-the-art autonomous programming, custom machining, and pneumatic systems.
+                    </p>
+                    <div class="model-grid" style="margin-top: 24px;">
+                        <div class="model-card">
+                            <h4>⚙️ Mechanical Subsystem</h4>
+                            <p>Specializing in custom CNC-milled aluminum chassis, brass gear trains, and custom-braided wire looms.</p>
+                        </div>
+                        <div class="model-card">
+                            <h4>⚡ Controls & Software</h4>
+                            <p>Writing Java and C++ routines with Kalman filtering, trajectory generation, and computer vision targeting.</p>
+                        </div>
+                        <div class="model-card">
+                            <h4>🏆 Outreach & Spirit</h4>
+                            <p>Mentoring local middle school STEM teams, building community exhibits, and competing with honor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Google Calendar Section -->
+        <div class="calendar-section" id="calendar">
+            <div class="section-header">
+                <h2>Workshop Calendar & Match Schedule</h2>
+                <p>Synced live with Google Calendar</p>
+            </div>
+            <div class="calendar-embed-container">
+                <iframe src="https://calendar.google.com/calendar/embed?src=c_caaeb35cf2c2707a4a3ed47d7670f56151de98452e3d2b161612edb003320ac7%40group.calendar.google.com&ctz=America%2FChicago" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal for Adding Dispatches -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-card">
+            <h3>New Telegraph Dispatch</h3>
+            <input type="text" id="ann-title" placeholder="Dispatch Title">
+            <input type="text" id="ann-author" placeholder="Your Name / Subsystem">
+            <textarea id="ann-body" placeholder="Write message details..."></textarea>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                <button class="btn-submit" onclick="submitAnnouncement()">Publish Dispatch</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <p>⚙️ GEARHEADS ROBOTICS</p>
+                <small>Est. 2018 • Steampunk Robotics Guild</small>
+            </div>
+            <div>
+                <p>Building Excellence in STEM & Industrial Arts</p>
+            </div>
+        </div>
+        <div class="footer-copy">
+            &copy; 2026 Gearheads Robotics Team. All blueprints, code, and dispatches reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll behavior
+        window.addEventListener('scroll', function() {
+            const navbar = id('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function id(e) { return document.getElementById(e); }
+
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            const tabs = ['models', 'spreadsheet', 'about'];
+            tabs.forEach(t => {
+                const btn = document.querySelector(`.tab-btn[onclick="switchTab('${t}')"]`);
+                const content = id(`tab-${t}`);
+                if (t === tabName) {
+                    if (content) content.classList.add('active');
+                    if (btn) btn.classList.add('active');
+                } else {
+                    if (content) content.classList.remove('active');
+                    if (btn) btn.classList.remove('active');
+                }
+            });
+        }
+
+        // Modal Logic
+        function openModal() {
+            id('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            id('modal').style.display = 'none';
+        }
+
+        function submitAnnouncement() {
+            const title = id('ann-title').value;
+            const author = id('ann-author').value;
+            const body = id('ann-body').value;
+
+            if (!title || !body) {
+                alert('Please fill out the title and body!');
+                return;
+            }
+
+            const card = document.createElement('div');
+            card.className = 'announcement-card';
+            card.innerHTML = `
+                <h4>${title}</h4>
+                <div class="ann-meta">Posted by ${author || 'Anonymous Gearhead'} • Just now</div>
+                <p>${body}</p>
+                <div class="ann-actions">
+                    <button class="btn-action" onclick="toggleLike(this)">⚙️ Acknowledge (0)</button>
+                </div>
+            `;
+
+            id('announcements-list').prepend(card);
+            id('ann-title').value = '';
+            id('ann-author').value = '';
+            id('ann-body').value = '';
+            closeModal();
+        }
+
+        function toggleLike(btn) {
+            let count = parseInt(btn.innerText.match(/\d+/)[0]);
+            count++;
+            btn.innerText = `⚙️ Acknowledge (${count})`;
+            btn.style.color = 'var(--brass-main)';
+        }
+    </script>
+</body>
+</html>
