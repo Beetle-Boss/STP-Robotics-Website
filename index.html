@@ -7,22 +7,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --bg-subtle: #f1f5f9;
-            --border-color: #e2e8f0;
-            --border-hover: #cbd5e1;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #64748b;
-            --brand-gold: #d97706;
-            --brand-gold-hover: #b45309;
-            --brand-gold-light: #fef3c7;
+            --bg-body: #f6f2ec;
+            --bg-card: #fdfbf7;
+            --bg-subtle: #ebdcd0;
+            --border-color: #dacac0;
+            --border-hover: #c2af9f;
+            --text-primary: #382c26;
+            --text-secondary: #5e4c42;
+            --text-muted: #887468;
+            --brand-gold: #9e6b43;
+            --brand-gold-hover: #7b4f2c;
+            --brand-gold-light: #f1e4d9;
             --radius-lg: 10px;
             --radius-md: 6px;
             --radius-sm: 4px;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-sm: 0 1px 2px 0 rgba(56, 44, 38, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(56, 44, 38, 0.08), 0 2px 4px -1px rgba(56, 44, 38, 0.04);
             --transition: all 0.2s ease-in-out;
         }
 
@@ -40,27 +40,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .announcement-bar {
-            background-color: var(--text-primary);
-            color: #ffffff;
-            text-align: center;
-            padding: 8px 16px;
-            font-size: 0.8125rem;
-            font-weight: 500;
-        }
-
-        .announcement-bar strong {
-            color: #fbbf24;
-            margin-right: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
         header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(253, 251, 247, 0.95);
             backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border-color);
         }
@@ -94,7 +78,7 @@
             font-size: 0.75rem;
             padding: 3px 8px;
             border-radius: var(--radius-sm);
-            border: 1px solid rgba(217, 119, 6, 0.2);
+            border: 1px solid rgba(158, 107, 67, 0.2);
         }
 
         .brand-text {
@@ -307,7 +291,7 @@
         .btn-delete {
             background: none;
             border: none;
-            color: #ef4444;
+            color: #b91c1c;
             font-size: 0.75rem;
             cursor: pointer;
             font-weight: 600;
@@ -376,6 +360,8 @@
             border-radius: var(--radius-sm);
             font-size: 0.875rem;
             outline: none;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
         }
 
         .reply-input:focus {
@@ -520,7 +506,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.4);
+            background: rgba(56, 44, 38, 0.4);
             backdrop-filter: blur(4px);
             z-index: 2000;
             justify-content: center;
@@ -584,10 +570,6 @@
     </style>
 </head>
 <body>
-
-    <div class="announcement-bar">
-        <strong>Upcoming Workshop</strong> Pneumatic Valve and Assembly — Friday at 4:30 PM in Room 104
-    </div>
 
     <header>
         <div class="nav-container">
