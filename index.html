@@ -3,61 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gearheads Robotics | Engineering Guild</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <title>Gearheads Robotics | Team 24171</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brass-main: #b5891a;
-            --brass-hover: #967012;
-            --brass-light: #f7f1e1;
-            --copper: #c47c48;
-            --steam-bg: #f9f7f2;
-            --steam-card: #ffffff;
-            --steam-card-light: #fcfbfa;
-            --steam-border: #e5decb;
-            --text-main: #2c2722;
-            --text-dim: #6d645c;
-            --radius-lg: 10px;
+            --bg-main: #f8f8f6;
+            --surface-card: #ffffff;
+            --surface-subtle: #f2f0ea;
+            --border-color: #e4e0d5;
+            --border-focus: #b8860b;
+            --text-primary: #1c1a17;
+            --text-secondary: #66625d;
+            --accent-brass: #a37318;
+            --accent-brass-hover: #855d10;
+            --accent-light: #f5eedf;
+            --accent-status: #2e6b38;
+            --radius-md: 8px;
             --radius-sm: 4px;
-            --transition-smooth: all 0.25s ease-in-out;
+            --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Courier Prime', monospace;
-            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            background-color: var(--steam-bg);
-            color: var(--text-main);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             line-height: 1.6;
-            font-weight: 400;
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(181, 137, 26, 0.08) 0%, transparent 50%),
-                linear-gradient(to bottom, #ffffff, var(--steam-bg));
+            -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4, .brand-text, .hero-eyebrow {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 0.04em;
+        h1, h2, h3, h4, .brand-text, .hero-eyebrow, .tab-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.01em;
         }
 
         .announcement-bar {
-            background-color: var(--brass-light);
-            color: var(--text-main);
+            background-color: var(--accent-light);
+            color: var(--text-primary);
             text-align: center;
-            padding: 10px 16px;
-            font-size: 0.85rem;
+            padding: 9px 16px;
+            font-size: 0.825rem;
             font-weight: 600;
-            border-bottom: 1px solid var(--steam-border);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .announcement-bar span {
-            color: var(--brass-main);
-            font-weight: 700;
+        .announcement-bar strong {
+            color: var(--accent-brass);
+            text-transform: uppercase;
+            margin-right: 6px;
+            letter-spacing: 0.04em;
         }
 
         header {
@@ -66,20 +66,18 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            transition: var(--transition-smooth);
-            background-color: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--steam-border);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+            background-color: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .nav-container {
-            max-width: 1100px;
+            max-width: 1120px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 24px;
+            padding: 14px 24px;
         }
 
         .brand {
@@ -89,105 +87,98 @@
             text-decoration: none;
         }
 
-        .tiger-logo-icon {
-            width: 42px;
-            height: 42px;
+        .tiger-logo {
+            width: 36px;
+            height: 36px;
             object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            transition: var(--transition-smooth);
-        }
-
-        .tiger-logo-icon:hover {
-            transform: scale(1.05);
         }
 
         .brand-badge {
-            background: var(--brass-light);
-            color: var(--brass-main);
+            background: var(--text-primary);
+            color: #ffffff;
             font-weight: 700;
-            font-size: 0.85rem;
-            padding: 6px 12px;
+            font-size: 0.75rem;
+            padding: 4px 8px;
             border-radius: var(--radius-sm);
-            border: 1px solid var(--brass-main);
+            letter-spacing: 0.05em;
         }
 
         .brand-text {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            color: var(--text-main);
+            color: var(--text-primary);
         }
 
         .nav-links {
             display: flex;
-            gap: 24px;
+            gap: 28px;
             list-style: none;
             align-items: center;
         }
 
         .nav-links a {
-            color: var(--text-main);
+            color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 700;
-            font-family: 'Cinzel', serif;
-            transition: var(--transition-smooth);
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: var(--transition);
         }
 
         .nav-links a:hover {
-            color: var(--brass-main);
+            color: var(--accent-brass);
         }
 
         .btn-calendar {
-            background: var(--brass-main);
+            background-color: var(--accent-brass);
             color: #ffffff !important;
             padding: 8px 16px;
             border-radius: var(--radius-sm);
-            font-size: 0.8rem !important;
-            border: none;
+            font-size: 0.825rem !important;
+            font-weight: 600;
         }
 
         .btn-calendar:hover {
-            background: var(--brass-hover);
+            background-color: var(--accent-brass-hover);
         }
 
         .hero {
-            background: linear-gradient(180deg, #ffffff 0%, var(--steam-bg) 100%);
-            padding: 150px 24px 70px;
+            background-color: #ffffff;
+            padding: 140px 24px 64px;
             text-align: center;
-            border-bottom: 1px solid var(--steam-border);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .hero-container {
-            max-width: 800px;
+            max-width: 760px;
             margin: 0 auto;
         }
 
         .hero-eyebrow {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            color: var(--brass-main);
+            color: var(--accent-brass);
             margin-bottom: 12px;
             text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .hero-title {
-            font-size: 3rem;
-            line-height: 1.2;
-            font-weight: 900;
-            color: var(--text-main);
+            font-size: 2.85rem;
+            line-height: 1.15;
+            font-weight: 700;
+            color: var(--text-primary);
             margin-bottom: 16px;
         }
 
         .hero-subtitle {
-            font-size: 1.15rem;
-            color: var(--text-dim);
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
         }
 
         .main-container {
-            max-width: 1080px;
-            margin: 40px auto;
+            max-width: 1120px;
+            margin: 48px auto;
             padding: 0 24px;
         }
 
@@ -196,98 +187,107 @@
             justify-content: space-between;
             align-items: flex-end;
             margin-bottom: 20px;
-            border-bottom: 2px solid var(--steam-border);
-            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
         }
 
         .section-header h2 {
-            font-size: 1.6rem;
-            color: var(--text-main);
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-weight: 700;
         }
 
         .section-header p {
-            color: var(--text-dim);
-            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
         }
 
-        .announcements-container {
-            background-color: var(--steam-card);
-            border-radius: var(--radius-lg);
+        .card-container {
+            background-color: var(--surface-card);
+            border-radius: var(--radius-md);
             padding: 28px;
-            border: 1px solid var(--steam-border);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-subtle);
             margin-bottom: 40px;
         }
 
-        .btn-add-announcement {
-            background-color: var(--brass-light);
-            color: var(--brass-main);
-            border: 1px solid var(--brass-main);
+        .btn-secondary {
+            background-color: var(--surface-subtle);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
             padding: 8px 16px;
             border-radius: var(--radius-sm);
-            font-weight: 700;
-            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 0.825rem;
             cursor: pointer;
-            transition: var(--transition-smooth);
+            transition: var(--transition);
         }
 
-        .btn-add-announcement:hover {
-            background-color: var(--brass-main);
-            color: #ffffff;
+        .btn-secondary:hover {
+            border-color: var(--accent-brass);
+            color: var(--accent-brass);
+            background-color: #ffffff;
         }
 
-        .announcement-card {
-            background-color: var(--steam-card-light);
-            border: 1px solid var(--steam-border);
-            border-left: 4px solid var(--brass-main);
-            padding: 18px;
+        .dispatch-card {
+            background-color: var(--surface-subtle);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent-brass);
+            padding: 20px;
             border-radius: var(--radius-sm);
             margin-top: 16px;
         }
 
-        .announcement-card h4 {
-            font-size: 1.05rem;
-            color: var(--text-main);
+        .dispatch-card h4 {
+            font-size: 1rem;
+            color: var(--text-primary);
             margin-bottom: 4px;
         }
 
-        .announcement-card .ann-meta {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            margin-bottom: 8px;
+        .dispatch-card .meta {
+            font-size: 0.775rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .dispatch-card p {
+            font-size: 0.9rem;
+            color: var(--text-primary);
         }
 
         .btn-action {
-            background-color: #ffffff;
-            border: 1px solid var(--steam-border);
-            padding: 5px 10px;
+            background-color: var(--surface-card);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
             border-radius: var(--radius-sm);
-            font-size: 0.78rem;
-            color: var(--text-dim);
+            font-size: 0.775rem;
+            font-weight: 600;
+            color: var(--text-secondary);
             cursor: pointer;
-            margin-top: 8px;
+            margin-top: 12px;
+            transition: var(--transition);
         }
 
         .btn-action:hover {
-            border-color: var(--brass-main);
-            color: var(--brass-main);
+            border-color: var(--accent-brass);
+            color: var(--accent-brass);
         }
 
         .tabs-wrapper {
-            background-color: var(--steam-card);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--steam-border);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            background-color: var(--surface-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-subtle);
             overflow: hidden;
             margin-bottom: 40px;
         }
 
         .tab-buttons {
             display: flex;
-            background-color: var(--steam-bg);
-            border-bottom: 1px solid var(--steam-border);
-            padding: 6px;
-            gap: 6px;
+            background-color: var(--surface-subtle);
+            border-bottom: 1px solid var(--border-color);
+            padding: 6px 6px 0;
+            gap: 4px;
         }
 
         .tab-btn {
@@ -295,20 +295,19 @@
             padding: 12px 16px;
             background: none;
             border: 1px solid transparent;
-            border-radius: var(--radius-sm);
-            font-size: 0.88rem;
-            font-weight: 700;
-            font-family: 'Cinzel', serif;
-            color: var(--text-dim);
+            border-bottom: none;
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
             cursor: pointer;
-            transition: var(--transition-smooth);
+            transition: var(--transition);
         }
 
         .tab-btn.active {
-            background: var(--steam-card);
-            color: var(--brass-main);
-            border: 1px solid var(--steam-border);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            background: var(--surface-card);
+            color: var(--accent-brass);
+            border-color: var(--border-color);
         }
 
         .tab-content {
@@ -320,7 +319,7 @@
             display: block;
         }
 
-        .model-grid {
+        .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
@@ -328,78 +327,93 @@
         }
 
         .model-card {
-            background-color: var(--steam-card-light);
-            border: 1px solid var(--steam-border);
-            border-radius: var(--radius-lg);
+            background-color: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
             padding: 20px;
-            transition: var(--transition-smooth);
+            transition: var(--transition);
         }
 
         .model-card:hover {
-            border-color: var(--brass-main);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-color: var(--accent-brass);
         }
 
         .model-card h4 {
-            color: var(--text-main);
+            font-size: 1rem;
+            color: var(--text-primary);
             margin-bottom: 6px;
         }
 
         .model-card p {
             font-size: 0.85rem;
-            color: var(--text-dim);
+            color: var(--text-secondary);
             margin-bottom: 16px;
         }
 
-        .model-card .badge {
+        .badge {
             display: inline-block;
-            background-color: var(--brass-light);
-            color: var(--brass-main);
-            font-size: 0.72rem;
+            background-color: var(--accent-light);
+            color: var(--accent-brass);
+            font-size: 0.725rem;
             font-weight: 700;
             padding: 2px 8px;
             border-radius: var(--radius-sm);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
-        .steam-table {
+        .roster-table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-            margin-top: 16px;
+            margin-top: 12px;
         }
 
-        .steam-table th {
-            background-color: var(--steam-bg);
-            color: var(--text-main);
-            font-family: 'Cinzel', serif;
-            padding: 12px 14px;
-            font-size: 0.82rem;
-            border-bottom: 2px solid var(--steam-border);
+        .roster-table th {
+            background-color: var(--surface-subtle);
+            color: var(--text-primary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
 
-        .steam-table td {
-            padding: 12px 14px;
-            border-bottom: 1px solid var(--steam-border);
-            font-size: 0.85rem;
-            color: var(--text-main);
+        .roster-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.875rem;
+            color: var(--text-primary);
+        }
+
+        .status-pill {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background-color: #e8f5e9;
+            color: var(--accent-status);
         }
 
         .calendar-section {
-            background-color: var(--steam-card);
-            border-radius: var(--radius-lg);
+            background-color: var(--surface-card);
+            border-radius: var(--radius-md);
             padding: 28px;
-            border: 1px solid var(--steam-border);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-subtle);
             margin-bottom: 40px;
         }
 
         .calendar-embed-container {
             width: 100%;
-            height: 580px;
+            height: 560px;
             border-radius: var(--radius-sm);
             overflow: hidden;
-            border: 1px solid var(--steam-border);
+            border: 1px solid var(--border-color);
             margin-top: 16px;
         }
 
@@ -416,38 +430,45 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(3px);
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
         }
 
         .modal-card {
-            background: var(--steam-card);
-            border: 1px solid var(--steam-border);
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
             padding: 28px;
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-md);
             width: 90%;
-            max-width: 480px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 460px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
         }
 
         .modal-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 14px;
-            color: var(--text-main);
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
         }
 
         .modal-card input, .modal-card textarea {
             width: 100%;
-            padding: 10px;
+            padding: 10px 12px;
             margin-bottom: 12px;
-            background: var(--steam-bg);
-            border: 1px solid var(--steam-border);
-            color: var(--text-main);
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
             border-radius: var(--radius-sm);
-            font-size: 0.88rem;
+            font-size: 0.875rem;
+            font-family: inherit;
+        }
+
+        .modal-card input:focus, .modal-card textarea:focus {
+            outline: none;
+            border-color: var(--accent-brass);
+            background: #ffffff;
         }
 
         .modal-card textarea {
@@ -459,50 +480,55 @@
             display: flex;
             justify-content: flex-end;
             gap: 10px;
+            margin-top: 8px;
         }
 
         .btn-cancel {
-            background: var(--steam-bg);
-            color: var(--text-dim);
-            border: 1px solid var(--steam-border);
+            background: var(--surface-subtle);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
             padding: 8px 14px;
             border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.825rem;
             cursor: pointer;
         }
 
         .btn-submit {
-            background: var(--brass-main);
+            background: var(--accent-brass);
             color: #ffffff;
             border: none;
             padding: 8px 14px;
-            font-weight: 700;
+            font-weight: 600;
+            font-size: 0.825rem;
             border-radius: var(--radius-sm);
             cursor: pointer;
         }
 
         footer {
-            background-color: #ffffff;
-            color: var(--text-dim);
-            padding: 36px 24px;
-            border-top: 1px solid var(--steam-border);
-            font-size: 0.82rem;
+            background-color: var(--surface-card);
+            color: var(--text-secondary);
+            padding: 32px 24px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.825rem;
             text-align: center;
         }
 
         .btn-download {
             display: inline-block;
-            background: var(--brass-light);
-            color: var(--brass-main);
+            background: var(--accent-light);
+            color: var(--accent-brass);
             text-decoration: none;
             padding: 6px 12px;
-            font-size: 0.78rem;
+            font-size: 0.775rem;
             border-radius: var(--radius-sm);
-            border: 1px solid var(--brass-main);
-            font-weight: 700;
+            border: 1px solid var(--accent-brass);
+            font-weight: 600;
+            transition: var(--transition);
         }
 
         .btn-download:hover {
-            background: var(--brass-main);
+            background: var(--accent-brass);
             color: #ffffff;
         }
     </style>
@@ -510,19 +536,19 @@
 <body>
 
     <div class="announcement-bar">
-        <span>NEXT WORKSHOP:</span> Pneumatic Valve & Gear Assembly — Friday at 4:30 PM in Lab 104.
+        <strong>Next Workshop</strong> Pneumatic Valve & Gear Assembly — Friday at 4:30 PM in Lab 104
     </div>
 
     <header>
         <div class="nav-container">
             <a href="#" class="brand">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Tiger_mascot.svg/1200px-Tiger_mascot.svg.png" alt="Stony Point Tiger Logo" class="tiger-logo-icon">
-                <span class="brand-badge">⚙️ GEARHEADS</span>
-                <span class="brand-text">Robotics Workshop</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Tiger_mascot.svg/1200px-Tiger_mascot.svg.png" alt="Stony Point Tiger Logo" class="tiger-logo">
+                <span class="brand-badge">24171</span>
+                <span class="brand-text">Gearheads Robotics</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#tab-section" onclick="switchTab('models')">Models</a></li>
-                <li><a href="#tab-section" onclick="switchTab('spreadsheet')">Team Ledger</a></li>
+                <li><a href="#tab-section" onclick="switchTab('models')">CAD Models</a></li>
+                <li><a href="#tab-section" onclick="switchTab('roster')">Team Roster</a></li>
                 <li><a href="#tab-section" onclick="switchTab('about')">About</a></li>
                 <li><a href="#calendar" class="btn-calendar">Calendar</a></li>
             </ul>
@@ -531,29 +557,29 @@
 
     <section class="hero">
         <div class="hero-container">
-            <div class="hero-eyebrow">Stony Point High School • Team #24171</div>
+            <div class="hero-eyebrow">Stony Point High School • Team 24171</div>
             <h1 class="hero-title">GEARHEADS ROBOTICS</h1>
-            <p class="hero-subtitle">"Forging the Future Through Precision Engineering & Innovation"</p>
+            <p class="hero-subtitle">Engineering high-performance autonomous and teleoperated systems.</p>
         </div>
     </section>
 
     <div class="main-container">
 
-        <!-- Dispatch / Announcements -->
-        <div class="announcements-container">
+        <!-- Workshop Updates -->
+        <div class="card-container">
             <div class="section-header">
                 <div>
                     <h2>Workshop Dispatches</h2>
-                    <p>Build updates, schedules, and engineering notes</p>
+                    <p>Engineering notes, schedules, and build logs</p>
                 </div>
-                <button class="btn-add-announcement" onclick="openModal()">+ New Dispatch</button>
+                <button class="btn-secondary" onclick="openModal()">+ New Dispatch</button>
             </div>
             <div id="announcements-list">
-                <div class="announcement-card">
+                <div class="dispatch-card">
                     <h4>Chassis Fabrication Phase Complete</h4>
-                    <div class="ann-meta">Posted by Jayden Kuntzman • Oct 14</div>
-                    <p>Our drive train chassis has cleared tolerance testing. Pneumatic pistons and gear reduction boxes are ready for mounting.</p>
-                    <button class="btn-action" onclick="toggleLike(this)">⚙️ Acknowledge (4)</button>
+                    <div class="meta">Posted by Jayden Kuntzman • Build Lead</div>
+                    <p>The drive train chassis has cleared alignment and tolerance testing. Pneumatic assembly and drive gearboxes are ready for mounting.</p>
+                    <button class="btn-action" onclick="toggleLike(this)">Acknowledge (4)</button>
                 </div>
             </div>
         </div>
@@ -561,51 +587,51 @@
         <!-- Main Content Tabs -->
         <div class="tabs-wrapper" id="tab-section">
             <div class="tab-buttons">
-                <button class="tab-btn active" onclick="switchTab('models')">⚙️ CAD Models</button>
-                <button class="tab-btn" onclick="switchTab('spreadsheet')">📊 Team Roster</button>
-                <button class="tab-btn" onclick="switchTab('about')">🕰️ About Us</button>
+                <button class="tab-btn active" onclick="switchTab('models')">CAD Models</button>
+                <button class="tab-btn" onclick="switchTab('roster')">Team Roster</button>
+                <button class="tab-btn" onclick="switchTab('about')">About Us</button>
             </div>
 
             <!-- Tab 1: Models -->
             <div id="tab-models" class="tab-content active">
                 <div class="section-header">
-                    <h2>CAD Schematics & 3D Models</h2>
-                    <p>Structural blueprints and mechanical files</p>
+                    <h2>CAD Schematics & Blueprints</h2>
+                    <p>Mechanical designs and 3D geometry files</p>
                 </div>
-                <div class="model-grid">
+                <div class="grid-3">
                     <div class="model-card">
                         <span class="badge">STEP / Fusion 360</span>
                         <h4>Pneumatic Gripper v2.1</h4>
-                        <p>High-torque dual claw powered by dual-acting air cylinders with gear mesh joints.</p>
+                        <p>High-torque dual claw powered by dual-acting air cylinders with precision gear linkages.</p>
                         <a href="#" class="btn-download">Download STEP File</a>
                     </div>
                     <div class="model-card">
                         <span class="badge">OnShape / STL</span>
                         <h4>Drivetrain Chassis</h4>
-                        <p>6-Wheel West Coast Drive with integrated gearboxes and sprockets.</p>
+                        <p>6-Wheel West Coast Drive assembly with custom gearbox mounts and sprocket guards.</p>
                         <a href="#" class="btn-download">View Blueprint</a>
                     </div>
                     <div class="model-card">
                         <span class="badge">SolidWorks</span>
                         <h4>Elevator Mechanism</h4>
-                        <p>Continuous rigging system driven by a planetary gear assembly for multi-stage extension.</p>
+                        <p>Continuous rigging system driven by a planetary gear reduction for multi-stage extension.</p>
                         <a href="#" class="btn-download">Download CAD Package</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab 2: Team Spreadsheet -->
-            <div id="tab-spreadsheet" class="tab-content">
+            <!-- Tab 2: Team Roster -->
+            <div id="tab-roster" class="tab-content">
                 <div class="section-header">
-                    <h2>Team Roster & Task Ledger</h2>
-                    <p>Member assignments and subsystem tracking</p>
+                    <h2>Team Roster & Leadership</h2>
+                    <p>Student leads and active sub-team assignments</p>
                 </div>
-                <table class="steam-table">
+                <table class="roster-table">
                     <thead>
                         <tr>
-                            <th>Subsystem / Member</th>
-                            <th>Role</th>
-                            <th>Active Project</th>
+                            <th>Member Name</th>
+                            <th>Leadership Role</th>
+                            <th>Primary Focus</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -613,20 +639,20 @@
                         <tr>
                             <td><strong>Braeden Taylor</strong></td>
                             <td>Team Lead</td>
-                            <td>Team Operations & Strategy</td>
-                            <td><span style="color: var(--brass-main); font-weight:700;">In Progress</span></td>
+                            <td>Operations, Strategic Planning & Coordination</td>
+                            <td><span class="status-pill">Active</span></td>
                         </tr>
                         <tr>
                             <td><strong>Jayden Kuntzman</strong></td>
                             <td>Build Lead</td>
-                            <td>Chassis & Elevator Mechanism</td>
-                            <td><span style="color: #2e7d32; font-weight:700;">Active</span></td>
+                            <td>Mechanical Design, Fabrication & Chassis</td>
+                            <td><span class="status-pill">Active</span></td>
                         </tr>
                         <tr>
                             <td><strong>Noah Taylor</strong></td>
                             <td>Programming Lead</td>
-                            <td>Autonomous Routines & PID Loops</td>
-                            <td><span style="color: var(--brass-main); font-weight:700;">Testing</span></td>
+                            <td>Autonomous Routines, TeleOp & PID Control</td>
+                            <td><span class="status-pill">Active</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -635,18 +661,18 @@
             <!-- Tab 3: About Us -->
             <div id="tab-about" class="tab-content">
                 <div class="section-header">
-                    <h2>About Stony Point Gearheads</h2>
-                    <p>Industrial design meets modern autonomous robotics</p>
+                    <h2>About Team 24171</h2>
+                    <p>Stony Point High School Robotics</p>
                 </div>
-                <p>Founded with a passion for creative engineering and mechanical elegance, <strong>Gearheads Robotics (#24171)</strong> combines industrial craftsmanship with autonomous software, custom machining, and pneumatic systems.</p>
+                <p><strong>Gearheads Robotics (#24171)</strong> is a student-led team based at Stony Point High School. Our mission centers on hands-on engineering, software development, and mechanical innovation through competitive robotics.</p>
             </div>
         </div>
 
-        <!-- Google Calendar Section -->
+        <!-- Calendar Section -->
         <div class="calendar-section" id="calendar">
             <div class="section-header">
-                <h2>Workshop & Event Calendar</h2>
-                <p>Live schedule</p>
+                <h2>Schedule & Events</h2>
+                <p>Workshop hours and competition calendar</p>
             </div>
             <div class="calendar-embed-container">
                 <iframe src="https://calendar.google.com/calendar/embed?src=c_caaeb35cf2c2707a4a3ed47d7670f56151de98452e3d2b161612edb003320ac7%40group.calendar.google.com&ctz=America%2FChicago" frameborder="0" scrolling="no"></iframe>
@@ -661,7 +687,7 @@
             <h3>New Workshop Dispatch</h3>
             <input type="text" id="ann-title" placeholder="Dispatch Title">
             <input type="text" id="ann-author" placeholder="Your Name / Role">
-            <textarea id="ann-body" placeholder="Write message details..."></textarea>
+            <textarea id="ann-body" placeholder="Write dispatch details..."></textarea>
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="closeModal()">Cancel</button>
                 <button class="btn-submit" onclick="submitAnnouncement()">Publish</button>
@@ -670,14 +696,14 @@
     </div>
 
     <footer>
-        &copy; 2026 Stony Point High School Gearheads Robotics Team #24171. All blueprints and dispatches reserved.
+        &copy; 2026 Stony Point High School Gearheads Robotics Team #24171. All rights reserved.
     </footer>
 
     <script>
         function id(e) { return document.getElementById(e); }
 
         function switchTab(tabName) {
-            ['models', 'spreadsheet', 'about'].forEach(t => {
+            ['models', 'roster', 'about'].forEach(t => {
                 const btn = document.querySelector(`.tab-btn[onclick="switchTab('${t}')"]`);
                 const content = id(`tab-${t}`);
                 if (t === tabName) {
@@ -701,12 +727,12 @@
             if (!title || !body) return alert('Please enter a title and message.');
 
             const card = document.createElement('div');
-            card.className = 'announcement-card';
+            card.className = 'dispatch-card';
             card.innerHTML = `
                 <h4>${title}</h4>
-                <div class="ann-meta">Posted by ${author || 'Team Member'} • Just now</div>
+                <div class="meta">Posted by ${author || 'Team Member'} • Just now</div>
                 <p>${body}</p>
-                <button class="btn-action" onclick="toggleLike(this)">⚙️ Acknowledge (0)</button>
+                <button class="btn-action" onclick="toggleLike(this)">Acknowledge (0)</button>
             `;
 
             id('announcements-list').prepend(card);
@@ -718,8 +744,8 @@
 
         function toggleLike(btn) {
             let count = parseInt(btn.innerText.match(/\d+/)[0]) + 1;
-            btn.innerText = `⚙️ Acknowledge (${count})`;
-            btn.style.color = 'var(--brass-main)';
+            btn.innerText = `Acknowledge (${count})`;
+            btn.style.color = 'var(--accent-brass)';
         }
     </script>
 </body>
